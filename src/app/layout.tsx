@@ -3,6 +3,7 @@ import { Outfit } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import ScrollProgress from "@/components/ScrollProgress";
+import SketchDefs from "@/components/SketchDefs";
 import { posthogSnippet } from "@/lib/posthog";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
@@ -54,6 +55,7 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: posthogSnippet }} />
       </head>
       <body className="antialiased">
+        <SketchDefs />
         <SmoothScroll />
         <ScrollProgress />
         <span className="grain" aria-hidden />

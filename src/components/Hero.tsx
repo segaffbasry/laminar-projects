@@ -116,7 +116,7 @@ export default function Hero() {
             <Magnetic strength={0.22}>
               <Link
                 href={hero.secondaryCta.href}
-                className="inline-flex items-center rounded-full border border-line-soft bg-white/70 px-6 py-3.5 text-[14.5px] font-medium text-ink backdrop-blur transition-colors hover:border-cornflower hover:text-navy"
+                className="sketch-hover inline-flex items-center rounded-full border border-line-soft bg-white/70 px-6 py-3.5 text-[14.5px] font-medium text-ink backdrop-blur transition-colors hover:border-transparent"
               >
                 {hero.secondaryCta.label}
               </Link>
@@ -160,9 +160,9 @@ export default function Hero() {
                   initial={{ opacity: 0, y: 14, scale: 0.94 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   transition={{ duration: 0.7, delay: 0.85 + i * 0.13, ease: EASE }}
-                  className={`absolute ${spots[i]} rounded-2xl border border-line-soft bg-white/88 px-3.5 py-2.5 shadow-[0_18px_44px_-26px_rgba(67,100,136,0.7)] backdrop-blur-md`}
+                  className={`sketch absolute ${spots[i]} rounded-2xl bg-white/92 px-4 py-2.5 backdrop-blur-md`}
                 >
-                  <p className="text-[17px] font-semibold leading-none tracking-[-0.02em] text-navy">
+                  <p className="text-[17px] font-semibold leading-none tracking-[-0.02em] text-ink">
                     {chip.value}
                   </p>
                   <p className="mt-1 text-[11px] leading-tight text-ink-mute">{chip.label}</p>

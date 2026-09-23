@@ -52,7 +52,7 @@ export default function Sectors() {
                   animate={{ flexGrow: on ? 5.4 : 1 }}
                   transition={{ duration: 0.65, ease: EASE }}
                   className={`group relative basis-0 overflow-hidden rounded-[20px] border text-left transition-colors duration-500 ${
-                    on ? "border-transparent bg-ink" : "border-line-soft bg-white hover:bg-white"
+                    on ? "sketch sketch-light border-transparent bg-ink" : "border-line-soft bg-white hover:border-ash"
                   }`}
                 >
                   {/* collapsed: vertical label */}

@@ -1,26 +1,46 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { motion, useInView, useMotionValue, useSpring, useTransform } from "motion/react";
+import { animate, motion, useMotionValue, useTransform } from "motion/react";
 import { Reveal, RevealChild, RevealGroup } from "./Reveal";
 import Marker from "./Marker";
 import { whoWeAre, globalStat } from "@/lib/content";
 
-/** Counts up to `value` once the tile scrolls into view. */
+/**
+ * Counts up to `value` the first time it scrolls into view.
+ *
+ * Uses a plain IntersectionObserver rather than useInView — the latter never
+ * fired here, leaving the figures frozen at 0.
+ */
 function Counter({ value, suffix = "" }: { value: number; suffix?: string }) {
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-18%" });
   const mv = useMotionValue(0);
-  const spring = useSpring(mv, { duration: 1500, bounce: 0 });
-  const rounded = useTransform(spring, (v) => Math.round(v).toString());
+  const text = useTransform(mv, (v) => Math.round(v).toLocaleString("en-GB"));
 
   useEffect(() => {
-    if (inView) mv.set(value);
-  }, [inView, mv, value]);
+    const el = ref.current;
+    if (!el) return;
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      mv.set(value);
+      return;
+    }
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (!entries[0]?.isIntersecting) return;
+        io.disconnect();
+        animate(mv, value, { duration: 1.6, ease: [0.16, 1, 0.3, 1] });
+      },
+      { threshold: 0.4 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [mv, value]);
 
   return (
     <span ref={ref} className="tabular-nums">
-      <motion.span>{rounded}</motion.span>
+      <motion.span>{text}</motion.span>
       {suffix}
     </span>
   );
@@ -75,7 +95,7 @@ export default function WhoWeAre() {
           {/* value tiles */}
           {whoWeAre.values.map((v, i) => (
             <RevealChild key={v.lead} className="lg:col-span-4">
-              <article className="card card-hover group relative flex h-full flex-col overflow-hidden p-6">
+              <article className="card card-hover sketch-hover group relative flex h-full flex-col p-6">
                 <span
                   aria-hidden
                   className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cornflower to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"

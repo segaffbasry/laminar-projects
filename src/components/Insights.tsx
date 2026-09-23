@@ -20,7 +20,7 @@ export default function Insights() {
             </div>
             <Link
               href="/our-stories"
-              className="group inline-flex items-center gap-2 rounded-full border border-line-soft px-5 py-2.5 text-[14px] font-medium text-ink transition-colors hover:border-cornflower hover:text-navy"
+              className="group sketch-hover inline-flex items-center gap-2 rounded-full border border-transparent px-5 py-2.5 text-[14px] font-medium text-ink transition-colors"
             >
               All stories
               <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden>
@@ -42,7 +42,7 @@ export default function Insights() {
             <RevealChild key={item.href} className="h-full">
               <Link
                 href={item.href}
-                className="card card-hover group relative flex h-full flex-col overflow-hidden p-6"
+                className="card card-hover sketch-hover sketch-inset group relative flex h-full flex-col overflow-hidden p-6"
               >
                 {/* hover wash */}
                 <span

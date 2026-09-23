@@ -87,7 +87,7 @@ export default function Letter() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-14% 0px -10% 0px" }}
                 transition={{ duration: 0.75, ease: EASE }}
-                className="card p-6 sm:p-8 lg:p-9"
+                className="card sketch-hover p-6 sm:p-8 lg:p-9"
               >
                 <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-cornflower">
                   {String(i + 1).padStart(2, "0")}

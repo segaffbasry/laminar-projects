@@ -67,7 +67,7 @@ export default function Footer() {
           {accreditations.map((a) => (
             <span
               key={a.src}
-              className="flex h-14 min-w-[104px] items-center justify-center rounded-xl bg-white/92 px-4 transition-colors hover:bg-white"
+              className="sketch-hover flex h-14 min-w-[104px] items-center justify-center rounded-xl bg-white/92 px-4 transition-colors hover:bg-white"
             >
               <Image
                 src={a.src}
