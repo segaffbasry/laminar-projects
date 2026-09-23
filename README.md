@@ -7,16 +7,20 @@ Next.js site, styled after the section rhythm and interactions of
 **Current scope: the homepage.** Everything else from the old site is captured in
 `_scrape/` and ready when other pages come into scope.
 
+The Next.js app sits at the repo root so Vercel auto-detects the framework on import —
+no Root Directory setting needed. `_scrape/` holds the capture of the old Webflow site and
+is excluded from the build via `.vercelignore`.
+
 ```
 laminarprojects/
-├── web/        Next.js app (the new site)
-└── _scrape/    full capture of the existing Webflow site
+├── src/, public/, package.json, next.config.ts   the Next.js app
+└── _scrape/                                       capture of the existing Webflow site
 ```
 
 ## Running it
 
 ```bash
-npm run dev --prefix web
+npm run dev
 ```
 
 ---
@@ -85,7 +89,7 @@ uses** — 494 of 494 `font-family` rules are Outfit. Dropped from the rebuild.
 Next.js 16 (App Router) · TypeScript · Tailwind v4 · Motion · Lenis
 
 ```
-web/src/
+src/
 ├── app/
 │   ├── layout.tsx      fonts, metadata, nav + footer shell
 │   ├── globals.css     design tokens and utilities
@@ -137,9 +141,9 @@ Headless PostHog EU — no badge, banner or cookie prompt.
 
 | File | Role |
 |---|---|
-| [`web/src/lib/posthog.ts`](web/src/lib/posthog.ts) | Loader + init + UTM capture + `scroll_depth` at 25/50/75/100. Only file holding the key. |
-| [`web/src/app/layout.tsx`](web/src/app/layout.tsx) | Renders it in `<head>`; sets `robots: { index: false, follow: false }` |
-| `web/.env.local`, `web/.env.example` | `NEXT_PUBLIC_POSTHOG_KEY` (set the same var in Vercel) |
+| [`src/lib/posthog.ts`](src/lib/posthog.ts) | Loader + init + UTM capture + `scroll_depth` at 25/50/75/100. Only file holding the key. |
+| [`src/app/layout.tsx`](src/app/layout.tsx) | Renders it in `<head>`; sets `robots: { index: false, follow: false }` |
+| `.env.local`, `.env.example` | `NEXT_PUBLIC_POSTHOG_KEY` (set the same var in Vercel) |
 
 `capture_pageview`, `capture_pageleave`, `autocapture` and session recording are all on;
 every event carries `site: window.location.hostname`. There is no `sitemap.ts` or
@@ -165,6 +169,7 @@ clicks, and `$pageleave`. View-source should show `noindex, nofollow` and
 - Only `/` exists. Every nav link points at a path with no page behind it.
 - Hero, services and sectors art are still the old flat-illustration PNGs. They carry the
   most visual weight on the page and are the obvious next thing to redraw.
-- Not deployed. Vercel + the `{slug}.regendigital.co` domain still need doing — the
-  prospect slug was not given, so nothing was guessed.
+- Not deployed. Import the repo into Vercel (it auto-detects Next.js), set
+  `NEXT_PUBLIC_POSTHOG_KEY`, then attach `{slug}.regendigital.co`. The prospect slug was
+  not given, so nothing was guessed.
 - No contact form.
