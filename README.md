@@ -113,11 +113,14 @@ together inside one rich-text block (`friend.Are you curious` → two paragraphs
 | Old | New |
 |---|---|
 | Letter hidden behind a 4-slide carousel | Sticky-rail long read — all four chapters on the page, rail tracks position |
-| Underline/arrow/sparkle PNGs | CSS gradients + inline SVG |
+| Underline/arrow/sparkle PNGs | CSS gradients + inline SVG; the marker underline sweeps in on view |
 | 6 YouTube iframes on load | Posters only; iframe mounts on click |
-| Static "200+ / 15 countries" | Counts up when the band enters view |
-| Services/sectors as hover-swap images | Keyboard-reachable tab list with animated panel |
+| Static "200+ / 15 countries" | Dark bento tile, figures count up on view |
+| Services/sectors as hover-swap images | Services is a numbered tab list; Sectors is an expanding panel rail, so the two no longer read as the same layout twice |
 | Fixed nav permanently covering content | Retracts on scroll down, returns on scroll up |
+| Flat statement band | Scroll-linked word-by-word reveal on dark |
+| — | Hero pointer parallax, floating figures, credential marquee |
+| — | Read-progress bar, film-grain veil, magnetic CTAs |
 
 Accreditation logos sit on white chips in the footer — several are dark-on-transparent and
 disappeared against the dark background.
@@ -128,9 +131,40 @@ disappeared against the dark background.
 1440px and 375px; no horizontal overflow at either. `prefers-reduced-motion` disables Lenis
 and collapses transitions.
 
+## 3. Instrumentation (private demo)
+
+Headless PostHog EU — no badge, banner or cookie prompt.
+
+| File | Role |
+|---|---|
+| [`web/src/lib/posthog.ts`](web/src/lib/posthog.ts) | Loader + init + UTM capture + `scroll_depth` at 25/50/75/100. Only file holding the key. |
+| [`web/src/app/layout.tsx`](web/src/app/layout.tsx) | Renders it in `<head>`; sets `robots: { index: false, follow: false }` |
+| `web/.env.local`, `web/.env.example` | `NEXT_PUBLIC_POSTHOG_KEY` (set the same var in Vercel) |
+
+`capture_pageview`, `capture_pageleave`, `autocapture` and session recording are all on;
+every event carries `site: window.location.hostname`. There is no `sitemap.ts` or
+`robots.ts` — the site is not meant to be indexed.
+
+**Note:** the snippet is a plain inline `<script>`, not `next/script`. With
+`next/script` and inline children, React threw `t.push is not a function` during render
+and blanked the hero.
+
+### Verify
+
+```bash
+open "https://<slug>.regendigital.co/?utm_source=test&utm_medium=manual&utm_campaign=check"
+```
+
+Scroll to the bottom, click a nav link, then leave. In PostHog EU → Activity expect
+`$pageview` (with `site` + the three UTMs), `scroll_depth` at 25/50/75/100, autocaptured
+clicks, and `$pageleave`. View-source should show `noindex, nofollow` and
+`eu.i.posthog.com` — all three are confirmed present in the prerendered HTML.
+
 ### Not done yet
 
 - Only `/` exists. Every nav link points at a path with no page behind it.
 - Hero, services and sectors art are still the old flat-illustration PNGs. They carry the
   most visual weight on the page and are the obvious next thing to redraw.
-- No analytics, no contact form, not deployed.
+- Not deployed. Vercel + the `{slug}.regendigital.co` domain still need doing — the
+  prospect slug was not given, so nothing was guessed.
+- No contact form.
