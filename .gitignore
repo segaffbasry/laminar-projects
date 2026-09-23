@@ -1,0 +1,15 @@
+# dependencies / build
+node_modules/
+.next/
+out/
+build/
+.DS_Store
+*.tsbuildinfo
+.env*.local
+.vercel
+
+# Site capture — 300 MB of binaries. The extracted copy and CMS data are kept;
+# re-download the media with _scrape/download.py when it's needed.
+_scrape/assets/
+_scrape/html/
+_scrape/css/
