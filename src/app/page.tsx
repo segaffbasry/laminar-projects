@@ -5,6 +5,7 @@ import Sectors from "@/components/Sectors";
 import Statement from "@/components/Statement";
 import Films from "@/components/Films";
 import Letter from "@/components/Letter";
+import Testimonials from "@/components/Testimonials";
 import Insights from "@/components/Insights";
 import { services } from "@/lib/content";
 
@@ -23,6 +24,7 @@ export default function Home() {
       <Sectors />
       <Films />
       <Letter />
+      <Testimonials />
       <Insights />
     </>
   );

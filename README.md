@@ -98,12 +98,18 @@ src/
 │   ├── SmoothScroll    Lenis, disabled under prefers-reduced-motion
 │   ├── Reveal          scroll-reveal primitives (fade-up, stagger, word rise)
 │   ├── Nav             sticky pill bar, retracts on scroll down
-│   ├── Hero            parallax, word-by-word headline
-│   ├── WhoWeAre        value cards + counting stat band
-│   ├── Selector        shared services/sectors picker
+│   ├── Hero            parallax, word-by-word headline, floating figures
+│   ├── ScheduleRail    capabilities drawn as a drifting programme/Gantt
+│   ├── Marker          underline that sweeps in on view
+│   ├── SketchDefs      SVG filters behind the hand-drawn borders
+│   ├── Magnetic        cursor-seeking wrapper for CTAs
+│   ├── WhoWeAre        bento: dark figures tile + value cards
+│   ├── Selector        services picker (numbered tab list)
+│   ├── Sectors         expanding panel rail
 │   ├── Statement       scroll-linked word-by-word reveal on dark
 │   ├── Films           click-to-load YouTube (posters only until asked)
-│   ├── Letter          sticky-rail long read
+│   ├── Letter          four teaser blocks linking out
+│   ├── Testimonials    client quote carousel on dark
 │   ├── Insights        story cards
 │   └── Footer          CTA, links, accreditations, oversized wordmark
 └── lib/content.ts      all homepage copy
@@ -125,6 +131,12 @@ together inside one rich-text block (`friend.Are you curious` → two paragraphs
 | Flat statement band | Scroll-linked word-by-word reveal on dark |
 | — | Hero pointer parallax, floating figures, credential marquee |
 | — | Read-progress bar, film-grain veil, magnetic CTAs |
+| Plain text credential marquee | Capabilities drawn as a drifting programme — the more telling image for a project-controls firm |
+| Letter as ~1,300 words on the homepage | Four teaser blocks leading to the relevant page; full text lives on /our-philosophy |
+| Six video players | One featured plus three, in a narrower column |
+| Sector/service art floating in a padded box | Boxes match the source aspect (2:1 and 16:10) so the art fills edge to edge |
+| No social proof | Testimonials carousel, verbatim from the Visual Planning, Reports and Shape pages |
+| Solid hairline borders | Hand-drawn ink borders — always on the hero figures, drawn in on hover elsewhere |
 
 Accreditation logos sit on white chips in the footer — several are dark-on-transparent and
 disappeared against the dark background.
@@ -173,3 +185,5 @@ clicks, and `$pageleave`. View-source should show `noindex, nofollow` and
   `NEXT_PUBLIC_POSTHOG_KEY`, then attach `{slug}.regendigital.co`. The prospect slug was
   not given, so nothing was guessed.
 - No contact form.
+- The letter blocks and "Read the full letter" point at /our-philosophy, which does not
+  exist yet — the full text is in `_scrape/content/our-philosophy.md`.

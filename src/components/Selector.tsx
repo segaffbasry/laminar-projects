@@ -102,7 +102,7 @@ export default function Selector({
           {/* panel */}
           <Reveal delay={0.08}>
             <div className="card overflow-hidden">
-              <div className="relative aspect-[16/10] w-full overflow-hidden bg-gradient-to-br from-[#eef3f9] to-[#f8fafc]">
+              <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#eef3f9]">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={item.id}
@@ -117,7 +117,7 @@ export default function Selector({
                       alt={item.label}
                       fill
                       sizes="(max-width: 1024px) 92vw, 54vw"
-                      className="object-contain object-center p-4"
+                      className="object-cover object-center"
                     />
                   </motion.div>
                 </AnimatePresence>

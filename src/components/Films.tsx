@@ -60,7 +60,7 @@ function Lite({ id, label }: { id: string; label: string }) {
 
 export default function Films() {
   return (
-    <section className="bg-white py-20 sm:py-24 lg:py-28">
+    <section className="bg-white py-18 sm:py-20 lg:py-24">
       <div className="mx-auto max-w-6xl px-5 sm:px-6">
         <Reveal>
           <h2 className="text-center text-[clamp(1.9rem,4.6vw,3.1rem)] font-semibold leading-[1.06] tracking-[-0.03em] text-ink">
@@ -68,7 +68,7 @@ export default function Films() {
           </h2>
         </Reveal>
 
-        <Reveal delay={0.1} className="mt-12">
+        <Reveal delay={0.1} className="mx-auto mt-10 max-w-4xl">
           <Lite id={films.featured} label="We Build Civilisation" />
         </Reveal>
 
@@ -77,7 +77,7 @@ export default function Films() {
           whileInView="show"
           viewport={{ once: true, margin: "-10%" }}
           variants={{ hidden: {}, show: { transition: { staggerChildren: 0.07 } } }}
-          className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
+          className="mx-auto mt-4 grid max-w-4xl gap-3 sm:grid-cols-3"
         >
           {films.reel.map((id) => (
             <motion.div

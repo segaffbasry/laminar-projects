@@ -37,7 +37,7 @@ export default function Sectors() {
 
         {/* ---- desktop: expanding rail ---- */}
         <Reveal delay={0.1}>
-          <div className="mt-12 hidden gap-3 lg:flex lg:h-[520px]">
+          <div className="mt-12 hidden gap-3 lg:flex lg:h-[600px]">
             {sectors.items.map((item, i) => {
               const on = i === active;
               return (
@@ -92,13 +92,13 @@ export default function Sectors() {
                         transition={{ duration: 0.35, delay: 0.12 }}
                         className="absolute inset-0 flex flex-col"
                       >
-                        <div className="relative flex-1 overflow-hidden bg-gradient-to-br from-[#eef3f9] to-[#f8fafc]">
+                        <div className="relative aspect-[2/1] w-full shrink-0 overflow-hidden bg-[#eef3f9]">
                           <Image
                             src={item.image}
                             alt={item.label}
                             fill
                             sizes="60vw"
-                            className="object-contain object-center p-6"
+                            className="object-cover object-center"
                           />
                         </div>
 
@@ -162,13 +162,13 @@ export default function Sectors() {
               transition={{ duration: 0.65, ease: EASE }}
               className="card overflow-hidden"
             >
-              <div className="relative aspect-[16/10] bg-gradient-to-br from-[#eef3f9] to-[#f8fafc]">
+              <div className="relative aspect-[2/1] overflow-hidden bg-[#eef3f9]">
                 <Image
                   src={item.image}
                   alt={item.label}
                   fill
                   sizes="92vw"
-                  className="object-contain object-center p-4"
+                  className="object-cover object-center"
                 />
               </div>
               <div className="border-t border-line-soft p-6">

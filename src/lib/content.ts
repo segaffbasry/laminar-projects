@@ -88,20 +88,30 @@ export const hero = {
   ],
 };
 
-/** Credential rail under the hero — drawn from the sector and service claims. */
-export const marquee = [
-  "Project & programme management",
-  "Integrated project controls",
-  "Planning & scheduling",
-  "Data centres",
-  "Power & renewables",
-  "Civil infrastructure",
-  "High-tech & industrial",
-  "Cost & commercial management",
-  "Risk & change management",
-  "BIM and ISO19650",
-  "Capital project excellence",
-  "Residential, commercial & mixed use",
+/**
+ * Credential rail under the hero, drawn as a programme: each capability is a
+ * bar on a schedule. Rows drift at different speeds. `span` is the bar width in
+ * rem, `gap` the float before it.
+ */
+export const schedule: { label: string; span: number; gap: number; accent?: boolean }[][] = [
+  [
+    { label: "Project & programme management", span: 17, gap: 2 },
+    { label: "Planning & scheduling", span: 12, gap: 3.5, accent: true },
+    { label: "Data centres", span: 8, gap: 2 },
+    { label: "Cost & commercial management", span: 16, gap: 4 },
+  ],
+  [
+    { label: "Integrated project controls", span: 15, gap: 5 },
+    { label: "Power & renewables", span: 11, gap: 2.5 },
+    { label: "Risk & change management", span: 14, gap: 3, accent: true },
+    { label: "High-tech & industrial", span: 12, gap: 2 },
+  ],
+  [
+    { label: "Civil infrastructure", span: 11, gap: 3 },
+    { label: "BIM and ISO19650", span: 10, gap: 4.5 },
+    { label: "Capital project excellence", span: 14, gap: 2 },
+    { label: "Residential, commercial & mixed use", span: 18, gap: 3 },
+  ],
 ];
 
 /* --------------------------------------------------------- who we are */
@@ -288,77 +298,98 @@ export const sectors = {
 export const films = {
   heading: "We Build Civilisation",
   featured: "PxcBZupiI7Y",
-  reel: ["Dh_yspJfKds", "FuvVsrmMqiw", "QfNz8f60GD0", "aUocZx3Ixfg", "kNPOpjwWYbI"],
+    // Trimmed from five to three — the section read as heavy with six players.
+  reel: ["Dh_yspJfKds", "FuvVsrmMqiw", "QfNz8f60GD0"],
 };
 
 /* ------------------------------------------------------------- letter */
 
 export const letter = {
   kicker: "A letter to our customers",
-  slides: [
+  /**
+   * Condensed from the full four-chapter letter into teaser blocks that lead
+   * out to the relevant page. Every lead line is verbatim from the letter,
+   * trimmed at a clause boundary rather than reworded.
+   */
+  blocks: [
     {
-      heading: "There are a few things you should know...",
-      paragraphs: [
-        "To you, our potential future customer and friend.",
-        "Are you curious about working with us? This website has plenty of information about how we can help you. What I really want to explain to you in this letter is what it will be like to work with us. There are a few things you should know.",
-        "When you meet us, the first thing you will notice is our personality; you will feel good when you speak with us, but you may not understand why. I say “our” personality because while we are a highly diverse team, we all share a few common things that make up “our” collective personality. Firstly, we are kind and authentic - we care about other people. Secondly, we are open and filled with energy to learn and challenge ourselves. Third, we all have to do things right, or we just won't be satisfied.",
-        "So when you feel good, it will be because you are absorbing some of that energy from us - energy to do things right, energy to overcome new challenges and energy to build a relationship with you.",
-      ],
-      points: [],
+      heading: "There are a few things you should know",
+      lead: "When you meet us, the first thing you will notice is our personality.",
+      points: ["Kind and authentic", "Open and full of energy", "Only satisfied when it is done right"],
+      href: "/our-philosophy",
+      cta: "Our philosophy",
     },
     {
-      heading: "The traditional approach achieves traditional results.",
-      paragraphs: [
-        "When we started, we saw three big problems with traditional construction consultancies.",
-      ],
+      heading: "The traditional approach achieves traditional results",
+      lead: "When we started, we saw three big problems with traditional construction consultancies.",
       points: [
-        {
-          title: "1. Traditionally-minded organisations are unreliable.",
-          body: "They are more focused on maximising the fees they charge you than delivering your construction project. Many traditional organisations recruit whoever they can find with a passable CV and proceed to stack your project with as many people as they can, even if they aren't really needed or even capable of doing the job. So you end up with, at best, a mediocre team that mismanages your project. This costs even more money, creates more delay and stresses everyone out.",
-        },
-        {
-          title: "2. Managing complex projects is about managing details, but the details are rarely managed.",
-          body: "Delivering complex construction projects effectively is all about the details. However, most construction consultancies don't have the capability to do the technical aspects of project management needed to manage all the details: Project planning, scheduling and controls. The result is that projects become more and more of a chaotic mess as they go on.",
-        },
-        {
-          title: "3. People are commoditised.",
-          body: "The culture of most construction organisations is reactive, full of conflict and cycles through people at an alarmingly high rate. Indeed, many of the best people leave the industry altogether because construction just isn't fun for them anymore. But it should be very enjoyable and fulfilling because we are building some exciting things! We knew that it didn't have to be this way. It is very possible to have great projects if you have great people working together as a great team. But to achieve this, a new and better approach was needed, a non-traditional approach. That is why we created Laminar.",
-        },
+        "Traditionally-minded organisations are unreliable",
+        "The details are rarely managed",
+        "People are commoditised",
       ],
+      href: "/our-philosophy",
+      cta: "Why we exist",
     },
     {
-      heading: "Our three guarantees.",
-      paragraphs: [
-        "If you work with us to make your projects great, I can guarantee you three things.",
-      ],
+      heading: "Our three guarantees",
+      lead: "If you work with us to make your projects great, I can guarantee you three things.",
       points: [
-        {
-          title: "Guarantee 1: You will have a great team",
-          body: "Our people are in the top 5% of most capable people for their level, and they embody the collective Laminar personality I mentioned at the start of this letter. This is the only way to ensure great teams that can deliver great projects. How can I guarantee this? Above all else, we ensure that we only recruit and retain consistently great people. We have a rigorous selection process that can take over 8 hours to complete. When people join, they are trained and developed with an equally rigorous development process.",
-        },
-        {
-          title: "Guarantee 2: You will have transparency and control of your project",
-          body: "Complex projects have many interdependent parts. So, one single detail can have disproportionately large effects on the rest of the project. This is why we put such an emphasis on tracking and controlling all the details. You will have complete transparency of everything that is happening. We achieve a level of control and transparency that many construction people have never seen before. How can I guarantee this? Because you need a full team of highly capable people to control complex projects, which we have (see the previous point). And because we have processes, standards, tools and templates that are tried and tested across hundreds of projects that we begin implementing from day one.",
-        },
-        {
-          title: "Guarantee 3: You will enjoy working with us",
-          body: "Over time, our customers become our friends. We work together to build a great project, and then we go to the pub or grab a bite. We connect not because we are just trying to drive more sales. But because our people are the types of people that enjoy building relationships. We build friendships that transcend organisational boundaries and commercial interests. How can I guarantee this? Again, see guarantee one; we select and retain only people with great personalities. We don't tolerate anyone who displays aggressive or disrespectful behaviour - if they slip through, they are quickly shown the door. The high level of harmony in our team is greatly cherished by all of us.",
-        },
+        "You will have a great team",
+        "You will have transparency and control of your project",
+        "You will enjoy working with us",
       ],
+      href: "/our-team",
+      cta: "Meet the team",
     },
     {
       heading: "Let's get to know each other",
-      paragraphs: [
-        "This letter isn't just a nice bit of marketing. It is real. But, I can't really prove anything to you with words alone.",
-        "What I can tell you is that over the last 7 years, we have grown consistently from 2 to over 200+ people, almost exclusively through our existing customers and word of mouth. Our customers keep working with us as their go-to consultant because they know we always deliver and they like us.",
-        "Everything begins with a personal connection, so let's speak, get to know each other, and share some ideas and some energy. Then, when you start working with us, you will see for yourself.",
-        "You can reach out to me or anyone else in the team by sending a short note to us via our contact form:",
-      ],
+      lead: "Everything begins with a personal connection, so let's speak, get to know each other, and share some ideas and some energy.",
       points: [],
-      cta: { label: "Contact", href: "/contact" },
+      href: "/contact",
+      cta: "Contact",
     },
   ],
   signature: "/signature.png",
+  author: "David",
+};
+
+/* ------------------------------------------------------- testimonials */
+
+/** Verbatim from the Visual Planning, Reports and Shape pages of the old site. */
+export const testimonials = {
+  heading: "What our clients say",
+  items: [
+    {
+      quote:
+        "Before Laminar, we had lots of reports, but we couldn't make a decision with any of them. They all said different things. Now we\u2019ve got one report, one version of the truth, and it\u2019s updated automatically every day.",
+      name: "Senior Delivery Lead",
+      role: "Major Programme",
+    },
+    {
+      quote:
+        "The reporting suite gave us real-time, drillable insights across commissioning, procurement, health and safety, and more. That level of visibility fundamentally changed how we managed the project.",
+      name: "Project Director",
+      role: "Industrial Sector",
+    },
+    {
+      quote:
+        "They ask the right questions because of their experience with similar projects. Beyond fulfilling your request, they suggest things that have worked well for other clients. They know what will be valuable for the client, and that kind of insight is priceless.",
+      name: "Planning Lead",
+      role: "Visual Planning",
+    },
+    {
+      quote:
+        "Teams that once relied on static spreadsheets are now confidently interrogating data and making better-informed decisions. The shift towards transparency and accountability has had a lasting impact.",
+      name: "Controls Manager",
+      role: "Infrastructure Sector",
+    },
+    {
+      quote:
+        "We\u2019re deploying Shape for reporting issues. It ties the reporting of issues back into the programme, resourcing and communications. That\u2019s a level of control we\u2019re very happy with.",
+      name: "James McCarthy",
+      role: "Project Director",
+    },
+  ],
 };
 
 /* ----------------------------------------------------------- insights */

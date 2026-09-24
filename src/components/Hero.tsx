@@ -14,7 +14,8 @@ import { useRef } from "react";
 import { RevealWords } from "./Reveal";
 import Marker from "./Marker";
 import Magnetic from "./Magnetic";
-import { hero, marquee } from "@/lib/content";
+import ScheduleRail from "./ScheduleRail";
+import { hero } from "@/lib/content";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -54,11 +55,11 @@ export default function Hero() {
         px.set(0);
         py.set(0);
       }}
-      className="hero-wash relative overflow-hidden pb-0 pt-28 sm:pt-32 lg:pt-40"
+      className="hero-wash relative flex min-h-[94svh] flex-col overflow-hidden pt-28 sm:pt-32 lg:pt-36"
     >
       <div className="grid-veil pointer-events-none absolute inset-0 opacity-70" aria-hidden />
 
-      <div className="relative mx-auto grid max-w-6xl items-center gap-10 px-5 pb-14 sm:px-6 sm:pb-16 lg:grid-cols-[1.02fr_0.98fr] lg:gap-8 lg:pb-20">
+      <div className="relative mx-auto my-auto grid w-full max-w-6xl items-center gap-10 px-5 pb-12 sm:px-6 lg:grid-cols-[1.02fr_0.98fr] lg:gap-8">
         <motion.div style={{ y: copyY, opacity: fade }}>
           <motion.span
             initial={{ opacity: 0, y: 10 }}
@@ -73,7 +74,7 @@ export default function Hero() {
             {hero.eyebrow}
           </motion.span>
 
-          <h1 className="mt-5 text-[clamp(2.4rem,6.2vw,4.1rem)] font-semibold leading-[1.04] tracking-[-0.032em] text-ink">
+          <h1 className="mt-6 text-[clamp(2.6rem,7vw,4.9rem)] font-semibold leading-[0.98] tracking-[-0.038em] text-ink">
             <Marker delay={0.75}>
               <RevealWords text={hero.headingLead} delay={0.12} />
             </Marker>{" "}
@@ -173,21 +174,7 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* credential rail */}
-      <div className="marquee-host relative border-y border-line-soft bg-white/55 py-4 backdrop-blur">
-        <div className="mask-x overflow-hidden">
-          <div className="marquee-track flex w-max items-center gap-8">
-            {[...marquee, ...marquee].map((item, i) => (
-              <span key={`${item}-${i}`} className="flex shrink-0 items-center gap-8">
-                <span className="text-[13px] font-medium whitespace-nowrap text-ink-mute">
-                  {item}
-                </span>
-                <span aria-hidden className="h-1 w-1 rounded-full bg-ash" />
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
+      <ScheduleRail />
     </section>
   );
 }
